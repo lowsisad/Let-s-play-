@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Камень, ножницы, бумага, ящерица, спок.</title>
+    </head>
+    <body >
+        <div>
+		<fieldset class="ad-form__element">
+          <label class="ad-form__label" for="type">Выбирай жест!</label>
+          <select id="type" name="type">
+            <option value="bungalo">Спок</option>
+            <option value="flat" selected>Камень</option>
+            <option value="house">Ножницы</option>
+            <option value="palace">Ящерица</option>
+			<option value="palace">Бумага</option>
+          </select>
+        </fieldset>
+		<button class="ad-form__submit" type="submit">Жми, если выбор сделан!</button>
+		<div id="output"></div>
+        </div>
+    </body>
+	<script>
+    window.onload = function() { 
+
+    	var btn = document.querySelector('.ad-form__submit'); 
+    	var container = document.querySelector('#output');
+
+		// функция для отправки GET запроса при нажатии на кнопку
+    	function makeRequest() {
+    		var xhr = new XMLHttpRequest(); 
+
+    		xhr.open('GET', 'request'); 
+
+    		xhr.onload = function() {
+    				container.innerHTML += this.responseText; 
+    		}; 
+
+    		xhr.onerror = function() {
+    				console.log('error!'); 
+    		}; 
+
+    		xhr.send(); 
+    	};  
+
+    	btn.addEventListener('click', makeRequest); 
+    }; 
+    </script>
+</html>
